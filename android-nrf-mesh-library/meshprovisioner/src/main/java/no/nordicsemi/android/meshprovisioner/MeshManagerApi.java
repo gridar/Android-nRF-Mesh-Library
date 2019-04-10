@@ -712,7 +712,9 @@ public class MeshManagerApi implements MeshMngrApi {
     public final void resetMeshNetwork() {
         //We delete the existing network as the user has already given the
         final MeshNetwork meshNet = mMeshNetwork;
-        deleteMeshNetworkFromDb(meshNet);
+        if (mMeshNetwork != null) {
+            deleteMeshNetworkFromDb(meshNet);
+        }
         final MeshNetwork newMeshNetwork = generateMeshNetwork();
         newMeshNetwork.setCallbacks(callbacks);
         insertNetwork(newMeshNetwork);
