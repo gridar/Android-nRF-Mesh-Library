@@ -782,6 +782,14 @@ public class MeshManagerApi implements MeshMngrApi {
         mTransportCallbacks.onNetworkLoaded(newMeshNetwork);
     }
 
+    public final void initialMeshNetwork() {
+        final MeshNetwork newMeshNetwork = generateMeshNetwork();
+        newMeshNetwork.setCallbacks(callbacks);
+        insertNetwork(newMeshNetwork);
+        mMeshNetwork = newMeshNetwork;
+        mTransportCallbacks.onNetworkLoaded(newMeshNetwork);
+    }
+
     private MeshNetwork generateMeshNetwork() {
         final String meshUuid = UUID.randomUUID().toString().toUpperCase(Locale.US);
 
